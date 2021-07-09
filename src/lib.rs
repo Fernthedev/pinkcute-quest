@@ -29,7 +29,7 @@ fn TextMeshProUGUI_GenerateTextMesh(this: &mut Il2CppObject) {
 #[no_mangle]
 pub extern "C" fn load() {
     info!("Installing Pink Cute hooks!");
-    
+
     TextMeshProUGUI_GenerateTextMesh.install();
     TextMeshPro_GenerateTextMesh.install();
 
