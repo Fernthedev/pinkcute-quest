@@ -1,0 +1,17 @@
+[package]
+name = "pinkcute"
+version = "0.1.0"
+edition = "2018"
+authors = ["FernTheDev <15272073+Fernthedev@users.noreply.github.com>"]
+
+[package.metadata.ndk]
+targets = ["arm64-v8a"]
+platform = 24
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+quest_hook = { git="https://github.com/StackDoubleFlow/quest-hook-rs" }
+
+[lib]
+crate-type = ["cdylib"]
