@@ -11,7 +11,8 @@ pub extern "C" fn setup() {
 
 #[hook("TMPro", "TextMeshPro", "GenerateTextMesh")]
 fn TextMeshPro_GenerateTextMesh(this: &mut Il2CppObject) {
-    this.store("m_text", Il2CppString::new("Pink Cute"));
+    this.invoke_void("set_text", Il2CppString::new("Pink Cute"))
+        .unwrap();
     this.invoke_void("ParseInputText", ()).unwrap();
 
     TextMeshPro_GenerateTextMesh.original(this);
@@ -19,11 +20,21 @@ fn TextMeshPro_GenerateTextMesh(this: &mut Il2CppObject) {
 
 #[hook("TMPro", "TextMeshProUGUI", "GenerateTextMesh")]
 fn TextMeshProUGUI_GenerateTextMesh(this: &mut Il2CppObject) {
-    this.store("m_text", Il2CppString::new("Pink Cute"));
+    this.invoke_void("set_text", Il2CppString::new("Pink Cute"))
+        .unwrap();
 
     this.invoke_void("ParseInputText", ()).unwrap();
 
     TextMeshProUGUI_GenerateTextMesh.original(this);
+}
+
+#[hook("TMPro", "TextMeshPro", "SetText")]
+fn TextMeshProUGUI_SetText(
+    this: &mut Il2CppObject,
+    input: Option<&mut Il2CppString>,
+    syncTextInputBox: bool,
+) {
+    TextMeshProUGUI_SetText.original(this, Some(Il2CppString::new("Pink Cute")), syncTextInputBox);
 }
 
 #[no_mangle]
